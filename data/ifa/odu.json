@@ -1,0 +1,404 @@
+{
+  "_note": "IFA knowledge base — seeded with Iwori Ofun (personal Odu) and the 16 Meji. Add entries incrementally. Specific ebo and akose should always be confirmed with lineage elders.",
+  "odu": [
+    {
+      "id": "iwori_ofun",
+      "name": "Iwori Ofun",
+      "nigerian_name": "Iwori Ofun",
+      "cuban_name": "Iwori Ofun",
+      "also_known_as": ["Iwori-Ofun", "Iwori Fun"],
+      "parent_odu": ["Iwori", "Ofun"],
+      "personal_note": "This is the user's personal Odu (Odu Ori). It receives priority treatment in all consultations.",
+      "themes": [
+        "Hidden knowledge and secrets — the person carries deep wisdom that must be revealed at the right time",
+        "Exceptional intelligence and mental power — the mind is the greatest tool",
+        "Spiritual revelation — what was concealed will be uncovered",
+        "The tongue as both weapon and gift — words have enormous power here, for good and destruction",
+        "Leadership through knowledge, not force",
+        "Transformation through crisis — challenges that seem catastrophic are often initiations",
+        "The danger of knowing too much and speaking too soon",
+        "Enemies who operate in shadow — not all opposition is visible",
+        "Spiritual gifts that carry responsibility"
+      ],
+      "ruling_orisha": ["Orunmila", "Eshu/Elegba", "Oshun", "Ogun"],
+      "strengths": [
+        "Natural intelligence and ability to see through deception",
+        "Spiritual insight and clairvoyance",
+        "Power of persuasion when words are used correctly",
+        "Resilience — this Odu has survived and overcome",
+        "Strong connection to Orunmila and the wisdom of IFA",
+        "Natural authority — people follow this person",
+        "Ability to succeed in business through strategic thinking"
+      ],
+      "warnings": [
+        "Do not reveal secrets or confidential information at the wrong time",
+        "Guard against gossip — words spoken carelessly can destroy what took years to build",
+        "Watch for hidden enemies, especially among those who appear to be friends",
+        "Do not let intelligence become arrogance",
+        "Business partnerships require extreme caution — scrutinize contracts and intentions",
+        "Avoid making decisions in anger — the mind must be clear",
+        "Do not neglect Eshu/Elegba — all roads must be open",
+        "Pride in knowledge without humility leads to downfall"
+      ],
+      "ese_ifa_summary": "In Iwori Ofun, the verses speak of a wise elder who possessed great knowledge but whose words, when spoken carelessly, brought ruin. After consulting IFA and performing the required ebo, the elder learned to speak only what was needed, at the moment it was needed — and became a source of healing rather than conflict. The Odu teaches that intelligence without discipline is a blade without a handle.",
+      "ebo": {
+        "note": "Specific ebo materials and procedures vary significantly by lineage (Nigerian vs. Afrocuban) and by the specific situation revealed in the divination. What follows is general guidance — consult your lineage for exact prescriptions.",
+        "general": [
+          "Eshu/Elegba must always be propitiated first in this Odu — no other work proceeds without opening the roads",
+          "Oshun receives offerings for matters of love, money, and sweetening difficult situations",
+          "Ogun receives offerings when there are conflicts, legal matters, or obstacles that require cutting through",
+          "The mouth and tongue are often involved in ebo — words that were spoken wrongly may need to be corrected spiritually",
+          "White cloth and white foods (coconut, shea butter) appear frequently in prescriptions",
+          "Cold water and calm are emphasized — heat and anger are what this Odu cautions against"
+        ]
+      },
+      "akose": {
+        "note": "Akose (spiritual medicines and preparations) in this Odu are lineage-specific and must be prepared by a trained babalawo. General categories are listed below.",
+        "remedies": [
+          "Preparations for protection of the head (ori) — the mind is the seat of power in this Odu",
+          "Herbal baths for clarity and removal of confusion or spiritual fog",
+          "Work with plants associated with Oshun (such as cinnamon, honey, sunflowers) for drawing sweetness",
+          "Protective preparations against hidden enemies and spiritual attacks",
+          "Remedies for the voice and speech when words have caused damage that needs to be healed"
+        ]
+      },
+      "nigerian_tradition_notes": "In traditional Nigerian IFA, Iwori Ofun is approached with a strong emphasis on the Ese IFA (poetry/verses) which contain the specific prescriptions. The babalawo recites the relevant verses and prescribes ebo based on what the Odu says in that sitting. Ogun and Eshu are given particular prominence in the Nigerian approach to this Odu.",
+      "cuban_tradition_notes": "In Afrocuban (Lucumi/Santería) tradition, this Odu is handled within the framework of Ifa initiation (Kofabori or Itefa depending on path). Ellegua (Eshu) is considered the most important Orisha to propitiate in this sign. Oshun's energy is strong here and her guidance is often sought. The specific letra (sign) governs what patakines (stories) are read and what rogaciones (head prayers) are prescribed."
+    },
+    {
+      "id": "ogbe_meji",
+      "name": "Ogbe Meji",
+      "nigerian_name": "Ogbe Meji",
+      "cuban_name": "Ogbe Meji",
+      "also_known_as": ["Ogbe", "Eji Ogbe"],
+      "parent_odu": ["Ogbe", "Ogbe"],
+      "themes": [
+        "The first and senior Odu — father of all other signs",
+        "Light, clarity, and divine authority",
+        "Leadership, royalty, and destiny",
+        "New beginnings and creation",
+        "Direct connection to Obatala and purity"
+      ],
+      "ruling_orisha": ["Orunmila", "Obatala", "Ogun"],
+      "strengths": [
+        "Natural leadership and authority",
+        "Clarity of vision and purpose",
+        "Divine favor when living with integrity",
+        "Longevity and perseverance"
+      ],
+      "warnings": [
+        "Pride is this Odu's greatest danger",
+        "Obatala's prohibitions must be respected strictly",
+        "Avoid alcohol and excess",
+        "Do not compromise integrity for short-term gain"
+      ],
+      "ese_ifa_summary": "Ogbe Meji is the first light — it was present at creation. The verses speak of Orunmila descending to Earth and establishing IFA. This Odu carries divine authority but also the responsibility of living as an example.",
+      "ebo": {
+        "note": "Lineage-specific. Obatala is central to most prescriptions in this Odu.",
+        "general": [
+          "Obatala receives white offerings — white cloth, coconut, shea butter, white pigeons",
+          "Purity of conduct is itself an ebo in Ogbe Meji",
+          "Ogun may need to be propitiated to clear obstacles"
+        ]
+      },
+      "akose": {
+        "note": "Consult your lineage for specific preparations.",
+        "remedies": [
+          "White herbal baths for purification and spiritual elevation",
+          "Head prayers and rogaciones with white materials"
+        ]
+      },
+      "nigerian_tradition_notes": "Eji Ogbe is the greatest Odu in Nigerian IFA. It opens all divination sessions and its Ese IFA are the most extensive.",
+      "cuban_tradition_notes": "In Lucumi tradition, Ogbe Meji carries the same seniority. Obatala governs this sign completely."
+    },
+    {
+      "id": "oyeku_meji",
+      "name": "Oyeku Meji",
+      "nigerian_name": "Oyeku Meji",
+      "cuban_name": "Oyeku Meji",
+      "also_known_as": ["Oyeku", "Okpe Meji"],
+      "parent_odu": ["Oyeku", "Oyeku"],
+      "themes": [
+        "Death, endings, and transformation",
+        "The transition between states of being",
+        "Night, darkness, and the unseen",
+        "Ancestral connection and communication with the dead",
+        "What must end so something new can begin"
+      ],
+      "ruling_orisha": ["Orunmila", "Oya", "Obatala (as death aspect)", "Egun (ancestors)"],
+      "strengths": [
+        "Deep connection to ancestral wisdom",
+        "Ability to navigate transformation and change",
+        "Spiritual authority in matters of life and death",
+        "Strong protective power when properly aligned"
+      ],
+      "warnings": [
+        "This Odu requires constant awareness of spiritual health",
+        "Neglecting the ancestors brings serious consequences",
+        "Ebo must not be delayed when this Odu appears",
+        "Guard against depression and stagnation"
+      ],
+      "ese_ifa_summary": "Oyeku Meji teaches that death is not an end but a passage. Its verses speak of the necessity of completing cycles. What has served its purpose must be released for new life to come forward.",
+      "ebo": {
+        "note": "Lineage-specific. Ancestor veneration is always central.",
+        "general": [
+          "Egun (ancestors) must be honored and fed before other work",
+          "Black and white materials appear frequently",
+          "Oya receives offerings when transition and transformation are needed"
+        ]
+      },
+      "akose": {
+        "note": "Consult your lineage.",
+        "remedies": [
+          "Ancestral baths and cleansings",
+          "Protective preparations against spiritual intrusion"
+        ]
+      },
+      "nigerian_tradition_notes": "In Nigerian IFA, Oyeku is understood as the night force that balances Ogbe (the day force). Together they hold creation in balance.",
+      "cuban_tradition_notes": "In Lucumi, this Odu is treated with great seriousness. Divination in Oyeku Meji often results in immediate ebo to address spiritual dangers."
+    },
+    {
+      "id": "iwori_meji",
+      "name": "Iwori Meji",
+      "nigerian_name": "Iwori Meji",
+      "cuban_name": "Iwori Meji",
+      "also_known_as": ["Iwori"],
+      "parent_odu": ["Iwori", "Iwori"],
+      "themes": [
+        "The heart and its intelligence",
+        "Inner vision and intuition",
+        "The power of intention and thought",
+        "What the heart knows that the eyes cannot see"
+      ],
+      "ruling_orisha": ["Orunmila", "Eshu/Elegba", "Oshun"],
+      "strengths": ["Deep intuition", "Emotional intelligence", "Spiritual perception"],
+      "warnings": ["Heart must be guarded — vulnerability is both power and risk", "Do not act from unchecked emotion"],
+      "ese_ifa_summary": "Iwori Meji speaks of the heart as the seat of knowledge. The eyes see what is outside; the heart sees what is true.",
+      "ebo": {"note": "Lineage-specific.", "general": ["Oshun is propitiated for heart matters", "Eshu clears the path"]},
+      "akose": {"note": "Consult your lineage.", "remedies": ["Heart-opening preparations", "Protection of emotional clarity"]},
+      "nigerian_tradition_notes": "Iwori is the third of the 16 principal Odu.",
+      "cuban_tradition_notes": "In Lucumi, Iwori Meji emphasizes the role of intention in spiritual work."
+    },
+    {
+      "id": "odi_meji",
+      "name": "Odi Meji",
+      "nigerian_name": "Odi Meji",
+      "cuban_name": "Odi Meji",
+      "also_known_as": ["Odi"],
+      "parent_odu": ["Odi", "Odi"],
+      "themes": ["Secrets and the womb", "Hidden forces", "Fertility and creation", "What grows in darkness"],
+      "ruling_orisha": ["Orunmila", "Oya", "Obatala"],
+      "strengths": ["Creative power", "Endurance", "Ability to bring hidden things to light"],
+      "warnings": ["Secrets kept too long become poison", "Avoid jealousy and hidden resentment"],
+      "ese_ifa_summary": "Odi Meji speaks of the power that lives in hidden places — like a seed in the earth, transformation happens where the eye cannot see.",
+      "ebo": {"note": "Lineage-specific.", "general": ["Oya governs transitions in this Odu"]},
+      "akose": {"note": "Consult your lineage.", "remedies": ["Cleansings for hidden obstacles"]},
+      "nigerian_tradition_notes": "Fourth principal Odu.",
+      "cuban_tradition_notes": "Strong Oya energy in Cuban tradition."
+    },
+    {
+      "id": "irosun_meji",
+      "name": "Irosun Meji",
+      "nigerian_name": "Irosun Meji",
+      "cuban_name": "Oshe Meji",
+      "also_known_as": ["Irosun", "Oshe"],
+      "parent_odu": ["Irosun", "Irosun"],
+      "themes": ["Blood and life force", "Sexuality and sensuality", "Wealth through pleasure", "Oshun's domain"],
+      "ruling_orisha": ["Orunmila", "Oshun", "Shango"],
+      "strengths": ["Magnetism and attraction", "Financial abundance when aligned", "Creative sensual power"],
+      "warnings": ["Excess leads to destruction", "Guard health — especially blood-related conditions", "Emotions must not override judgment"],
+      "ese_ifa_summary": "Irosun Meji teaches that pleasure and wealth are gifts that carry responsibility.",
+      "ebo": {"note": "Lineage-specific.", "general": ["Oshun is central — honey, gold, yellow flowers", "Shango for strength and justice"]},
+      "akose": {"note": "Consult your lineage.", "remedies": ["Attraction and sweetening preparations", "Health strengthening work"]},
+      "nigerian_tradition_notes": "Fifth principal Odu. Strong Oshun energy.",
+      "cuban_tradition_notes": "Known as Oshe Meji in Lucumi. Oshun governs almost entirely."
+    },
+    {
+      "id": "owonrin_meji",
+      "name": "Owonrin Meji",
+      "nigerian_name": "Owonrin Meji",
+      "cuban_name": "Owonrin Meji",
+      "also_known_as": ["Owonrin", "Wonrin"],
+      "parent_odu": ["Owonrin", "Owonrin"],
+      "themes": ["Chaos and creative disorder", "The unexpected", "Revolution and sudden change", "Eshu's deepest nature"],
+      "ruling_orisha": ["Orunmila", "Eshu/Elegba", "Shango"],
+      "strengths": ["Adaptability and resilience", "Ability to turn chaos into opportunity", "Unexpected luck"],
+      "warnings": ["Instability if not grounded", "Impulsiveness leads to regret", "Do not make sudden moves without consulting IFA"],
+      "ese_ifa_summary": "Owonrin Meji is the Odu of the unexpected. It warns that what appears to be disorder is often divine reorganization.",
+      "ebo": {"note": "Lineage-specific.", "general": ["Eshu must be constantly fed in this Odu", "Stability work with Obatala"]},
+      "akose": {"note": "Consult your lineage.", "remedies": ["Grounding preparations", "Luck activation work"]},
+      "nigerian_tradition_notes": "Sixth principal Odu. Known for its complex and numerous Ese IFA.",
+      "cuban_tradition_notes": "Strong Ellegua presence. Unpredictability is honored rather than feared."
+    },
+    {
+      "id": "obara_meji",
+      "name": "Obara Meji",
+      "nigerian_name": "Obara Meji",
+      "cuban_name": "Obara Meji",
+      "also_known_as": ["Obara"],
+      "parent_odu": ["Obara", "Obara"],
+      "themes": ["Royalty and leadership", "Generosity as power", "The king who serves", "Honor and reputation"],
+      "ruling_orisha": ["Orunmila", "Shango", "Obatala"],
+      "strengths": ["Natural authority", "Generosity that returns abundance", "Charisma and influence"],
+      "warnings": ["Pride is the poison of this Odu", "Generosity must be genuine, not performance", "Do not let ego override wisdom"],
+      "ese_ifa_summary": "Obara Meji says: the true king is known by his generosity. Power that does not serve eventually destroys itself.",
+      "ebo": {"note": "Lineage-specific.", "general": ["Shango receives offerings for strength and justice", "Royal colors — red and white"]},
+      "akose": {"note": "Consult your lineage.", "remedies": ["Elevation and authority preparations", "Protective work for the leader"]},
+      "nigerian_tradition_notes": "Seventh principal Odu. Shango's domain.",
+      "cuban_tradition_notes": "Shango governs this sign in Lucumi. Royal protocol is emphasized."
+    },
+    {
+      "id": "okanran_meji",
+      "name": "Okanran Meji",
+      "nigerian_name": "Okanran Meji",
+      "cuban_name": "Okanran Meji",
+      "also_known_as": ["Okanran"],
+      "parent_odu": ["Okanran", "Okanran"],
+      "themes": ["Conflict and confrontation", "The warrior who fights to protect", "Justice through force", "Quick decisive action"],
+      "ruling_orisha": ["Orunmila", "Ogun", "Eshu"],
+      "strengths": ["Courage under pressure", "Decisive action", "Protection of what matters"],
+      "warnings": ["Aggression without direction destroys the self", "Choose battles wisely", "Hot head leads to cold regret"],
+      "ese_ifa_summary": "Okanran Meji is the warrior's Odu. It does not avoid conflict — it teaches how to fight with purpose and when to sheathe the blade.",
+      "ebo": {"note": "Lineage-specific.", "general": ["Ogun is central — iron, rum, cigars", "Eshu clears the path before battle"]},
+      "akose": {"note": "Consult your lineage.", "remedies": ["Protection and warrior strength preparations"]},
+      "nigerian_tradition_notes": "Eighth principal Odu. Ogun and conflict are central themes.",
+      "cuban_tradition_notes": "Ogun and Ellegua are both critical in this sign in Lucumi."
+    },
+    {
+      "id": "ogunda_meji",
+      "name": "Ogunda Meji",
+      "nigerian_name": "Ogunda Meji",
+      "cuban_name": "Ogunda Meji",
+      "also_known_as": ["Ogunda", "Ogundabede"],
+      "parent_odu": ["Ogunda", "Ogunda"],
+      "themes": ["Ogun's Odu — the path clearer", "Hard work and perseverance", "Cutting through obstacles", "The labor that builds lasting things"],
+      "ruling_orisha": ["Orunmila", "Ogun"],
+      "strengths": ["Tireless work ethic", "Ability to clear any obstacle", "Physical and spiritual strength"],
+      "warnings": ["Do not work without rest — Ogun's children burn out", "Avoid violence outside of protection", "Stubbornness must not replace wisdom"],
+      "ese_ifa_summary": "Ogunda Meji teaches that the path is cleared by those willing to work. Nothing stands before genuine effort aligned with Ogun's power.",
+      "ebo": {"note": "Lineage-specific.", "general": ["Ogun is primary — iron tools, rum, palm oil", "Hard physical labor can itself be ebo"]},
+      "akose": {"note": "Consult your lineage.", "remedies": ["Strength and endurance preparations", "Path-clearing work"]},
+      "nigerian_tradition_notes": "Ninth principal Odu.",
+      "cuban_tradition_notes": "Ogun dominates completely. Work and the forge are sacred."
+    },
+    {
+      "id": "osa_meji",
+      "name": "Osa Meji",
+      "nigerian_name": "Osa Meji",
+      "cuban_name": "Osa Meji",
+      "also_known_as": ["Osa"],
+      "parent_odu": ["Osa", "Osa"],
+      "themes": ["Feminine power and witchcraft", "The Aje (witches/powerful women)", "Rapid change and upheaval", "What anger creates"],
+      "ruling_orisha": ["Orunmila", "Oya", "Yemoja"],
+      "strengths": ["Fierce protective power", "Access to deep spiritual forces", "The ability to transform anything"],
+      "warnings": ["Anger is this Odu's greatest danger", "Uncontrolled emotions invite spiritual attack", "Respect the feminine forces or face consequences"],
+      "ese_ifa_summary": "Osa Meji speaks of the power that lives in women and the spiritual forces associated with them. The wise person honors this power; the foolish person dismisses it and suffers.",
+      "ebo": {"note": "Lineage-specific.", "general": ["Oya and Yemoja receive offerings", "The Aje are honored with specific protocols"]},
+      "akose": {"note": "Consult your lineage.", "remedies": ["Protection from spiritual attack", "Calming preparations for anger"]},
+      "nigerian_tradition_notes": "Tenth principal Odu. The Aje (feminine spiritual forces) are central.",
+      "cuban_tradition_notes": "Oya and Yemaya both feature strongly in this Odu in Lucumi."
+    },
+    {
+      "id": "ika_meji",
+      "name": "Ika Meji",
+      "nigerian_name": "Ika Meji",
+      "cuban_name": "Ika Meji",
+      "also_known_as": ["Ika"],
+      "parent_odu": ["Ika", "Ika"],
+      "themes": ["Rebellion and the refusal to conform", "The outsider who carries important gifts", "What society rejects that is actually sacred", "Taboo and the laws broken with consequence"],
+      "ruling_orisha": ["Orunmila", "Eshu", "Obatala"],
+      "strengths": ["Independence and original thinking", "The ability to see what others refuse to see", "Gifts that come precisely because of being different"],
+      "warnings": ["Rebellion without purpose is self-destruction", "Do not break taboos carelessly", "Isolation chosen too often becomes a trap"],
+      "ese_ifa_summary": "Ika Meji is the Odu of the one who walks a different road. Its verses speak of gifts hidden in rejection and the price paid for refusing to conform — but also the greater price of denying your nature.",
+      "ebo": {"note": "Lineage-specific.", "general": ["Eshu/Elegba is essential for opening roads that others cannot access", "Obatala for clarity of purpose"]},
+      "akose": {"note": "Consult your lineage.", "remedies": ["Opening preparations for blocked paths", "Identity and purpose alignment work"]},
+      "nigerian_tradition_notes": "Eleventh principal Odu.",
+      "cuban_tradition_notes": "Strong Ellegua energy. The crossroads between worlds."
+    },
+    {
+      "id": "oturupon_meji",
+      "name": "Oturupon Meji",
+      "nigerian_name": "Oturupon Meji",
+      "cuban_name": "Oturupon Meji",
+      "also_known_as": ["Oturupon", "Otrupon"],
+      "parent_odu": ["Oturupon", "Oturupon"],
+      "themes": ["The danger of ingratitude", "What is owed and must be paid", "Spiritual debt and its consequences", "The necessity of humility"],
+      "ruling_orisha": ["Orunmila", "Eshu", "Ogun"],
+      "strengths": ["Deep spiritual awareness of cause and consequence", "The ability to pay debts and move forward cleanly"],
+      "warnings": ["Ingratitude is fatal in this Odu", "Do not forget those who helped you", "Spiritual debts do not disappear — they collect interest"],
+      "ese_ifa_summary": "Oturupon Meji warns of the spiritual law of reciprocity. The person who forgets where they came from will find themselves returned there.",
+      "ebo": {"note": "Lineage-specific.", "general": ["Settling spiritual and material debts is itself ebo", "Eshu governs what is owed"]},
+      "akose": {"note": "Consult your lineage.", "remedies": ["Karmic clearing preparations", "Gratitude practices with physical expression"]},
+      "nigerian_tradition_notes": "Twelfth principal Odu.",
+      "cuban_tradition_notes": "Debt and reciprocity are emphasized in Lucumi practice."
+    },
+    {
+      "id": "otura_meji",
+      "name": "Otura Meji",
+      "nigerian_name": "Otura Meji",
+      "cuban_name": "Otura Meji",
+      "also_known_as": ["Otura"],
+      "parent_odu": ["Otura", "Otura"],
+      "themes": ["Orunmila's most personal Odu", "Divine wisdom and the source of IFA itself", "The covenant between humans and Orun (heaven)", "Sacred knowledge and its transmission"],
+      "ruling_orisha": ["Orunmila", "Obatala"],
+      "strengths": ["Access to the deepest levels of IFA wisdom", "Divine protection of the highest order when aligned", "The capacity to teach and transmit sacred knowledge"],
+      "warnings": ["Sacred responsibilities must not be neglected", "Knowledge without action is waste", "The covenant with Orunmila must be honored"],
+      "ese_ifa_summary": "Otura Meji is Orunmila's own sign. Its verses carry the origin stories of IFA and the terms of the agreement between humans and the divine.",
+      "ebo": {"note": "Lineage-specific.", "general": ["Orunmila is propitiated directly", "White offerings for Obatala"]},
+      "akose": {"note": "Consult your lineage.", "remedies": ["Alignment with divine purpose", "Sacred covenant renewal"]},
+      "nigerian_tradition_notes": "Thirteenth principal Odu. Considered Orunmila's personal sign.",
+      "cuban_tradition_notes": "Treated with highest reverence in Lucumi IFA."
+    },
+    {
+      "id": "irete_meji",
+      "name": "Irete Meji",
+      "nigerian_name": "Irete Meji",
+      "cuban_name": "Irete Meji",
+      "also_known_as": ["Irete"],
+      "parent_odu": ["Irete", "Irete"],
+      "themes": ["Wealth, abundance, and the earth's generosity", "The farmer who works with nature", "Patience as the path to prosperity", "What the earth gives to those who tend it"],
+      "ruling_orisha": ["Orunmila", "Orisha Oko", "Osanyin"],
+      "strengths": ["Capacity for sustained effort that builds lasting wealth", "Connection to natural and herbal medicine", "Abundance when patience is practiced"],
+      "warnings": ["Impatience destroys the harvest before it arrives", "Do not take more than what is needed", "Neglect of the earth (physical and spiritual) leads to famine"],
+      "ese_ifa_summary": "Irete Meji speaks of the farmer who plants in faith and tends with care. The harvest does not come immediately, but it comes completely.",
+      "ebo": {"note": "Lineage-specific.", "general": ["Orisha Oko receives agricultural offerings", "Osanyin governs herbal work in this Odu"]},
+      "akose": {"note": "Consult your lineage.", "remedies": ["Abundance and prosperity preparations", "Herbal medicine work"]},
+      "nigerian_tradition_notes": "Fourteenth principal Odu. Strong connection to herbal medicine (Osanyin).",
+      "cuban_tradition_notes": "Agricultural and herbal themes are preserved in Lucumi practice."
+    },
+    {
+      "id": "ose_meji",
+      "name": "Ose Meji",
+      "nigerian_name": "Ose Meji",
+      "cuban_name": "Ose Meji",
+      "also_known_as": ["Ose"],
+      "parent_odu": ["Ose", "Ose"],
+      "themes": ["Sexuality, sensuality, and erotic power", "The sacred and the profane united", "What desire creates when channeled correctly", "Children, fertility, and legacy"],
+      "ruling_orisha": ["Orunmila", "Oshun", "Shango"],
+      "strengths": ["Creative and sexual power as a generative force", "The ability to attract and magnetize", "Strong capacity for legacy and creation"],
+      "warnings": ["Uncontrolled desire becomes the person's destruction", "Sexual energy must be channeled, not suppressed or indulged without boundaries", "Guard against being manipulated through desire"],
+      "ese_ifa_summary": "Ose Meji teaches that Oshun's gifts — beauty, love, pleasure — are sacred when honored and destructive when abused.",
+      "ebo": {"note": "Lineage-specific.", "general": ["Oshun is central — honey, gold, river water", "Shango for grounding sexual power in strength"]},
+      "akose": {"note": "Consult your lineage.", "remedies": ["Attraction preparations", "Fertility and creative power work"]},
+      "nigerian_tradition_notes": "Fifteenth principal Odu.",
+      "cuban_tradition_notes": "Oshun dominates in Lucumi. Sensuality and beauty are honored as divine gifts."
+    },
+    {
+      "id": "ofun_meji",
+      "name": "Ofun Meji",
+      "nigerian_name": "Ofun Meji",
+      "cuban_name": "Ofun Meji",
+      "also_known_as": ["Ofun", "Ofun Mafun"],
+      "parent_odu": ["Ofun", "Ofun"],
+      "themes": ["Death, disease, and the ultimate transformation", "What must die so life continues", "The medicine that heals through crisis", "The sacred in suffering"],
+      "ruling_orisha": ["Orunmila", "Obatala", "Oya", "Yemoja"],
+      "strengths": ["The deepest capacity for healing — one who has faced darkness can heal darkness in others", "Spiritual authority earned through suffering and transformation", "Connection to the deepest mysteries"],
+      "warnings": ["This Odu requires constant spiritual maintenance — neglect here has serious consequences", "Do not resist necessary endings", "The body must be cared for with discipline"],
+      "ese_ifa_summary": "Ofun Meji is the last of the 16 principal Odu and carries the weight of all that comes before it. Its verses speak of death not as enemy but as the final purification — the transformation that makes eternal things possible.",
+      "ebo": {"note": "Lineage-specific. Ebo in this Odu is often urgent.", "general": ["Obatala for purity and protection", "Oya for transition", "Egun (ancestors) must be honored and consulted"]},
+      "akose": {"note": "Consult your lineage.", "remedies": ["Deep cleansing and purification preparations", "Health protection work", "Ancestor medicine"]},
+      "nigerian_tradition_notes": "Sixteenth and final principal Odu. Carries enormous spiritual weight.",
+      "cuban_tradition_notes": "In Lucumi, Ofun Meji is approached with great seriousness and care. Ebo is rarely optional when this Odu speaks."
+    }
+  ]
+}

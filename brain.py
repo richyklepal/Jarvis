@@ -1,8 +1,7 @@
 import os
-from collections.abc import Generator
 import anthropic
 
-_client: anthropic.Anthropic | None = None
+_client = None
 
 
 def _get_client() -> anthropic.Anthropic:
@@ -17,18 +16,34 @@ def _get_client() -> anthropic.Anthropic:
     return _client
 
 
-def stream(
-    messages: list[dict],
-    system: str,
-) -> Generator[tuple[str, str], None, None]:
-    """Stream a conversation turn through Claude.
+def call(messages, system, tools=None):
+    """Non-streaming call with optional tool support. Returns a raw Message object."""
+    client = _get_client()
+    model = os.environ.get("CLAUDE_MODEL", "claude-opus-4-8")
 
-    Yields (event_type, data) tuples:
-      ("text",  chunk_str)  — a piece of the reply as it arrives
-      ("error", msg_str)    — something went wrong; no more chunks follow
+    kwargs = {
+        "model": model,
+        "max_tokens": 4096,
+        "system": system,
+        "messages": messages,
+    }
+    if tools:
+        kwargs["tools"] = tools
 
-    Tier 2 will extend this to also yield ("tool_call", {...}).
-    """
+    try:
+        return client.messages.create(**kwargs)
+    except anthropic.APIConnectionError:
+        raise RuntimeError("[Can't reach the API — check your connection.]")
+    except anthropic.RateLimitError:
+        raise RuntimeError("[Rate limit — wait a moment and try again.]")
+    except anthropic.AuthenticationError:
+        raise RuntimeError("[Auth failed — check ANTHROPIC_API_KEY in your .env.]")
+    except anthropic.APIError as e:
+        raise RuntimeError(f"[API error: {e}]")
+
+
+def stream(messages, system):
+    """Streaming text call (no tools). Yields ("text", chunk) or ("error", msg)."""
     client = _get_client()
     model = os.environ.get("CLAUDE_MODEL", "claude-opus-4-8")
 

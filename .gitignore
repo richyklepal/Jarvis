@@ -9,3 +9,4 @@ venv/
 dist/
 build/
 data/memory/
+data/notes.json
