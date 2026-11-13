@@ -1,0 +1,25 @@
+Date,Day,Guest passes (25),Outreach attempts (100),Contacts made,Appts set (8),Appts showed,Tours (9),Joins (4.6),ACH joins,KO booked,VIP names,FB quads,Review asks,Corp leads (1),Web leads called <1hr,Web leads total,Phone inquiries logged,Joins to date,Pace target,Ahead (+) / behind (-)
+11/13,Fri,,,,,,,,,,,,,,,,,=SUM($I$2:I2),"=ROUND(60/13*1,1)",=S2-T2
+11/14,Sat,,,,,,,,,,,,,,,,,=SUM($I$2:I3),"=ROUND(60/13*2,1)",=S3-T3
+11/15,Sun,,,,,,,,,,,,,,,,,=SUM($I$2:I4),"=ROUND(60/13*3,1)",=S4-T4
+11/20,Fri,,,,,,,,,,,,,,,,,=SUM($I$2:I5),"=ROUND(60/13*4,1)",=S5-T5
+11/21,Sat,,,,,,,,,,,,,,,,,=SUM($I$2:I6),"=ROUND(60/13*5,1)",=S6-T6
+11/22,Sun,,,,,,,,,,,,,,,,,=SUM($I$2:I7),"=ROUND(60/13*6,1)",=S7-T7
+11/27,Fri,,,,,,,,,,,,,,,,,=SUM($I$2:I8),"=ROUND(60/13*7,1)",=S8-T8
+11/28,Sat,,,,,,,,,,,,,,,,,=SUM($I$2:I9),"=ROUND(60/13*8,1)",=S9-T9
+11/29,Sun,,,,,,,,,,,,,,,,,=SUM($I$2:I10),"=ROUND(60/13*9,1)",=S10-T10
+12/4,Fri,,,,,,,,,,,,,,,,,=SUM($I$2:I11),"=ROUND(60/13*10,1)",=S11-T11
+12/5,Sat,,,,,,,,,,,,,,,,,=SUM($I$2:I12),"=ROUND(60/13*11,1)",=S12-T12
+12/6,Sun,,,,,,,,,,,,,,,,,=SUM($I$2:I13),"=ROUND(60/13*12,1)",=S13-T13
+12/11,Fri,,,,,,,,,,,,,,,,,=SUM($I$2:I14),"=ROUND(60/13*13,1)",=S14-T14
+
+TOTALS,,=SUM(C2:C14),=SUM(D2:D14),=SUM(E2:E14),=SUM(F2:F14),=SUM(G2:G14),=SUM(H2:H14),=SUM(I2:I14),=SUM(J2:J14),=SUM(K2:K14),=SUM(L2:L14),=SUM(M2:M14),=SUM(N2:N14),=SUM(O2:O14),=SUM(P2:P14),=SUM(Q2:Q14),=SUM(R2:R14)
+
+Contact rate (assume 25%),"=IFERROR(E16/D16,0)"
+Booking rate (assume 30%),"=IFERROR(F16/E16,0)"
+Show rate (assume 60%),"=IFERROR(G16/F16,0)"
+Tour close rate (assume 50%),"=IFERROR(I16/H16,0)"
+ACH % (goal 90%),"=IFERROR(J16/I16,0)"
+KO booking % (goal 60%),"=IFERROR(K16/I16,0)"
+"VIP names per join (goal 3-5, min 2)","=IFERROR(L16/I16,0)"
+Web leads called within 1 hr,"=IFERROR(P16/Q16,0)"
