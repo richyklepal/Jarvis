@@ -12,6 +12,7 @@ from tools.ifa import register_ifa_tools
 from tools.notes import register_notes_tools
 from tools.obsidian import register_obsidian_tools
 from tools.github_learn import register_github_tools
+from tools.skills import register_skill_tools
 from tools import obsidian
 
 
@@ -21,6 +22,7 @@ def build_registry():
     register_notes_tools(registry)
     register_obsidian_tools(registry)
     register_github_tools(registry)
+    register_skill_tools(registry)
     return registry
 
 

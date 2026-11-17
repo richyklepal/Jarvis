@@ -119,3 +119,10 @@ Everything is logged to the Obsidian vault set by `OBSIDIAN_VAULT_PATH` (fallbac
 | `Jarvis/Knowledge/GitHub/*.md`     | Repos studied with `github_study_repo`                      |
 
 Jarvis reads the vault back with `vault_search` / `vault_read`. Private repos need `GITHUB_TOKEN`.
+
+---
+
+## Skills & Stack
+
+- **Skills** — `.claude/skills/` holds 30 SEO/GEO/marketing/copy playbooks from `Illyism/seo-skills` (see `.claude/skills/SOURCES.md`). Claude Code uses them directly; Jarvis uses them via `list_skills` / `load_skill`. Refresh: `scripts/install_skills.sh`.
+- **Stack** — `stack/repos.json` lists the open-source tools in Jarvis's orbit (Open Generative AI, VoiceStudio, OpenSEO, AppFlowy, OpenWhispr, OpenProject, Chatwoot, Cap). `scripts/install_stack.sh` clones them to `~/jarvis-stack`; `scripts/study_stack.py` writes a knowledge note for each into Obsidian.

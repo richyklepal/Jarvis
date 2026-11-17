@@ -79,7 +79,7 @@ def study_repo(repo: str):
         tree = _get(f"/repos/{full_name}/git/trees/{ref}?recursive=1").get("tree", [])
         commits = _get(f"/repos/{full_name}/commits?per_page=15&sha={ref}")
     except urllib.error.HTTPError as e:
-        return f"GitHub error {e.code} on {full_name}: {e.reason} (private repo? set GITHUB_TOKEN)"
+        return f"GitHub error {e.code} on {full_name}: {e.reason} (private repo or rate limit? set GITHUB_TOKEN)"
     except urllib.error.URLError as e:
         return f"Can't reach GitHub: {e.reason}"
 
