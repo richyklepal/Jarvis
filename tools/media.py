@@ -21,7 +21,7 @@ import urllib.error
 import urllib.request
 from datetime import datetime
 
-from tools import obsidian
+from tools import local_image, obsidian
 
 _SUCCESS = {"completed", "succeeded", "success"}
 _FAILURE = {"failed", "error", "cancelled", "canceled"}
@@ -83,13 +83,24 @@ def _run(endpoint, payload, timeout_s):
     raise RuntimeError(f"Timed out after {timeout_s}s — request {rid} may still finish on MuAPI.")
 
 
-def _save(kind, url, prompt, model, rid):
+def _media_target(kind, prompt, ext):
     stamp = datetime.now().strftime("%Y-%m-%d_%H%M%S")
-    ext = os.path.splitext(url.split("?")[0])[1] or (".png" if kind == "image" else ".mp4")
     slug = re.sub(r"[^a-z0-9]+", "-", prompt.lower())[:40].strip("-") or kind
-    fname = f"{stamp}_{slug}{ext}"
     media_dir = obsidian.jarvis_root() / "Media"
     media_dir.mkdir(parents=True, exist_ok=True)
+    return stamp, f"{stamp}_{slug}{ext}", media_dir
+
+
+def _log_generation(stamp, kind, model, prompt, embed, source):
+    obsidian.vault_write(
+        "Jarvis/Media/Generations.md",
+        f"## {stamp} — {kind} · `{model}`\n**Prompt:** {prompt}\n\n{embed}\n\nSource: {source}\n",
+    )
+
+
+def _save(kind, url, prompt, model, rid):
+    ext = os.path.splitext(url.split("?")[0])[1] or (".png" if kind == "image" else ".mp4")
+    stamp, fname, media_dir = _media_target(kind, prompt, ext)
     saved = None
     try:
         with urllib.request.urlopen(urllib.request.Request(url, headers={"User-Agent": "jarvis-assistant"}), timeout=120) as r:
@@ -98,10 +109,7 @@ def _save(kind, url, prompt, model, rid):
     except Exception as e:
         print(f"\n[media download failed, keeping URL only: {e}]")
     embed = f"![[{fname}]]" if saved else f"![]({url})"
-    obsidian.vault_write(
-        "Jarvis/Media/Generations.md",
-        f"## {stamp} — {kind} · `{model}`\n**Prompt:** {prompt}\n\n{embed}\n\nSource: {url} · request `{rid}`\n",
-    )
+    _log_generation(stamp, kind, model, prompt, embed, f"MuAPI {url} · request `{rid}`")
     return saved, url
 
 
@@ -114,9 +122,37 @@ def _gate(confirmed, what):
     return None
 
 
-def generate_image(prompt, model=DEFAULT_IMAGE_MODEL, aspect_ratio="1:1", image_url="", confirmed=False):
+def _image_route(provider, model, image_url):
+    """Decide local vs cloud. Local is free; cloud (MuAPI) is paid."""
+    provider = (provider or os.environ.get("IMAGE_PROVIDER", "auto")).lower()
+    if model in local_image.CATALOG:
+        return "local"
+    if provider == "local" or (provider == "auto" and not image_url and not model and local_image.is_ready()):
+        return "local"
+    return "cloud"
+
+
+def _generate_local(prompt, model, aspect_ratio, negative_prompt):
+    if not local_image.is_ready() and not model:
+        return "Local image engine isn't set up — run scripts/setup_local_images.sh (or use provider='cloud')."
+    stamp, fname, media_dir = _media_target("image", prompt, ".png")
+    path, model, secs = local_image.generate(prompt, media_dir / fname, model, aspect_ratio, negative_prompt)
+    _log_generation(stamp, "image", model, prompt, f"![[{fname}]]", f"local sd.cpp · {secs}s")
+    return f"Image ready (local {model}, {secs}s, free). Saved to vault: Jarvis/Media/{fname}"
+
+
+def generate_image(prompt, model="", aspect_ratio="1:1", image_url="", provider="",
+                   negative_prompt="", confirmed=False):
+    if _image_route(provider, model, image_url) == "local":
+        if image_url:
+            return "Local engine doesn't do image-to-image yet — use provider='cloud' for edits/references."
+        return _generate_local(prompt, model if model in local_image.CATALOG else "", aspect_ratio, negative_prompt)
+    fell_back = not model and not image_url and not local_image.is_ready()
+    model = model or DEFAULT_IMAGE_MODEL
     blocked = _gate(confirmed, "image generation")
     if blocked:
+        if fell_back:
+            blocked += " (Free local engine isn't set up yet — scripts/setup_local_images.sh — so this would use paid cloud.)"
         return blocked
     payload = {"prompt": prompt, "aspect_ratio": aspect_ratio}
     if image_url:
@@ -152,16 +188,29 @@ def register_media_tools(registry):
     registry.register(
         name="generate_image",
         description=(
-            "Generate an image with MuAPI (Higgsfield replacement; 70+ models e.g. flux-dev-image, "
-            "nano-banana-2, bytedance-seedream-5.0-pro-layer). PAID: first describe prompt+model and "
+            "Generate an image. Two engines: LOCAL (free, private, runs on the user's computer — models "
+            f"{', '.join(local_image.CATALOG)}) and CLOUD via MuAPI (paid, 70+ premium models e.g. "
+            "flux-dev-image, nano-banana-2, bytedance-seedream-5.0-pro-layer; also image edits via image_url). "
+            "Default is local when installed. Local needs no confirmation. Cloud is PAID: describe prompt+model, "
             "get the user's yes, then call with confirmed=true. Result is saved into Obsidian."
         ),
         input_schema={
             "type": "object",
-            "properties": {**common, "model": {"type": "string", "description": f"MuAPI endpoint. Default {DEFAULT_IMAGE_MODEL}."}},
+            "properties": {
+                **common,
+                "model": {"type": "string", "description": "Local model name or MuAPI endpoint. Omit for the default."},
+                "provider": {"type": "string", "enum": ["local", "cloud"], "description": "Force an engine. Omit for auto (local first)."},
+                "negative_prompt": {"type": "string", "description": "Things to avoid (local engine)."},
+            },
             "required": ["prompt"],
         },
         fn=generate_image,
+    )
+    registry.register(
+        name="list_image_models",
+        description="Show local image models (installed or not) and whether the local engine is set up.",
+        input_schema={"type": "object", "properties": {}, "required": []},
+        fn=local_image.list_local_models,
     )
     registry.register(
         name="generate_video",

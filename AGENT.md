@@ -55,7 +55,8 @@ Never hedges for the sake of sounding safe. Cut everything that doesn't earn its
 | Brain    | Claude claude-sonnet-4-6 | Anthropic SDK, behind a thin seam in `brain.py`        |
 | STT      | VoiceStudio / Whisper / Deepgram | `STT_PROVIDER` — local first, Deepgram fallback |
 | TTS      | VoiceStudio / ElevenLabs | `TTS_PROVIDER` — local first, ElevenLabs fallback      |
-| Media    | MuAPI (Open-Generative-AI engine) | Image + video generation, replaces Higgsfield; paid, confirmation-gated |
+| Images   | stable-diffusion.cpp (local) → MuAPI | Local first: free, Metal on Apple Silicon (`scripts/setup_local_images.sh`); MuAPI for premium models/edits |
+| Video    | MuAPI (Open-Generative-AI engine) | Replaces Higgsfield; paid, confirmation-gated |
 | Runtime  | Laptop-first             | Heartbeat (Tier 5) designed to relocate without rewrite|
 
 ---
