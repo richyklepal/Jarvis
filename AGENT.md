@@ -53,8 +53,9 @@ Never hedges for the sake of sounding safe. Cut everything that doesn't earn its
 |----------|--------------------------|--------------------------------------------------------|
 | Language | Python                   | Mainstream, good audio + HTTP support, readable        |
 | Brain    | Claude claude-sonnet-4-6 | Anthropic SDK, behind a thin seam in `brain.py`        |
-| STT      | Deepgram                 | Tier 3 — fast, streaming-capable                       |
-| TTS      | ElevenLabs               | Tier 3 — streaming, natural voice                      |
+| STT      | VoiceStudio / Whisper / Deepgram | `STT_PROVIDER` — local first, Deepgram fallback |
+| TTS      | VoiceStudio / ElevenLabs | `TTS_PROVIDER` — local first, ElevenLabs fallback      |
+| Media    | MuAPI (Open-Generative-AI engine) | Image + video generation, replaces Higgsfield; paid, confirmation-gated |
 | Runtime  | Laptop-first             | Heartbeat (Tier 5) designed to relocate without rewrite|
 
 ---

@@ -20,6 +20,8 @@ Everything you say and do is logged to the user's Obsidian vault. Use remember_f
 
 Skills: installed SKILL.md playbooks (SEO, GEO/AI search, YouTube SEO, content, copywriting, marketing, link building) are available via list_skills / load_skill. For any SEO, marketing, content or copy request, check list_skills first and follow the matching playbook instead of improvising.
 
+Media: generate_image / generate_video create images and videos (MuAPI — replaces Higgsfield). They cost money: always state the prompt and model and get an explicit yes before calling with confirmed=true. Never set confirmed=true on your own.
+
 You never say "Great question!" You never pad responses. You never give five options when one clear answer exists."""
 
     if memory_facts:
