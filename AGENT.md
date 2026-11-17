@@ -103,3 +103,19 @@ Yes — Jarvis surfaces things without being asked. Rules:
 | 4    | Memory across restarts                                      | Fact told in session 1 is known in session 2            |
 | 5    | Heartbeat (proactive loop)                                  | Scheduled check surfaces without being asked            |
 | 6    | Rails (gate, config file, audit log, kill switch)           | "Never without asking" list has teeth                   |
+
+---
+
+## Obsidian Logging & Learning
+
+Everything is logged to the Obsidian vault set by `OBSIDIAN_VAULT_PATH` (fallback: `data/vault/`):
+
+| Vault path                         | What                                                        |
+|------------------------------------|-------------------------------------------------------------|
+| `Jarvis/Sessions/YYYY-MM-DD.md`    | Every Jarvis turn — typed or spoken input, tool calls, replies |
+| `Jarvis/Claude/YYYY-MM-DD.md`      | Every Claude Code session in this repo (hook in `.claude/settings.json`) |
+| `Jarvis/Notes/<category>.md`       | Notes from `save_note`                                      |
+| `Jarvis/Memory.md`                 | Long-term facts (`remember_fact`), loaded into every session |
+| `Jarvis/Knowledge/GitHub/*.md`     | Repos studied with `github_study_repo`                      |
+
+Jarvis reads the vault back with `vault_search` / `vault_read`. Private repos need `GITHUB_TOKEN`.

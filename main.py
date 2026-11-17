@@ -10,12 +10,17 @@ from system_prompt import build_system_prompt
 from tool_registry import ToolRegistry
 from tools.ifa import register_ifa_tools
 from tools.notes import register_notes_tools
+from tools.obsidian import register_obsidian_tools
+from tools.github_learn import register_github_tools
+from tools import obsidian
 
 
 def build_registry():
     registry = ToolRegistry()
     register_ifa_tools(registry)
     register_notes_tools(registry)
+    register_obsidian_tools(registry)
+    register_github_tools(registry)
     return registry
 
 
@@ -108,7 +113,11 @@ def run():
     args = parser.parse_args()
 
     registry = build_registry()
-    system = build_system_prompt()
+    facts = obsidian.load_memory_facts()
+    system = build_system_prompt(facts)
+    print(obsidian.status_line())
+    print(f"[Memory] {len(facts)} facts loaded from Jarvis/Memory.md")
+    obsidian.log_session_start("voice" if args.voice else "text")
 
     if args.voice:
         run_voice(system, registry)

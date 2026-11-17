@@ -3,6 +3,8 @@ import os
 from pathlib import Path
 from datetime import datetime
 
+from tools import obsidian
+
 _NOTES_PATH = Path(os.environ.get("JARVIS_DATA_DIR", ".")) / "data" / "notes.json"
 
 
@@ -29,6 +31,7 @@ def save_note(content, category="general"):
     }
     notes.append(note)
     _save(notes)
+    obsidian.write_note_entry(category, content)
     return f"Saved [{category}]: {content}"
 
 
