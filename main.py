@@ -10,12 +10,14 @@ from system_prompt import build_system_prompt
 from tool_registry import ToolRegistry
 from tools.ifa import register_ifa_tools
 from tools.notes import register_notes_tools
+from tools.obsidian import register_obsidian_tools
 
 
 def build_registry():
     registry = ToolRegistry()
     register_ifa_tools(registry)
     register_notes_tools(registry)
+    register_obsidian_tools(registry)
     return registry
 
 

@@ -3,6 +3,8 @@ import os
 from pathlib import Path
 from datetime import datetime
 
+from tools import obsidian
+
 _NOTES_PATH = Path(os.environ.get("JARVIS_DATA_DIR", ".")) / "data" / "notes.json"
 
 
@@ -29,7 +31,9 @@ def save_note(content, category="general"):
     }
     notes.append(note)
     _save(notes)
-    return f"Saved [{category}]: {content}"
+    path = obsidian.write_note(content, category)
+    where = f" (in Obsidian: {path.parent.name}/{path.name})" if path else ""
+    return f"Saved [{category}]: {content}{where}"
 
 
 def get_notes(category=None, limit=10):
@@ -52,7 +56,7 @@ def register_notes_tools(registry):
         description=(
             "Save a note, reminder, idea, or piece of information for later retrieval. "
             "Use this when the user wants to remember something, capture an idea, log a task, "
-            "or set a reminder. Categories: 'general', 'ifa', 'business', 'personal', 'reminder'."
+            "or set a reminder. Categories: 'general', 'ifa', 'business', 'personal', 'reminder', 'streaming'. Notes also go into the user's Obsidian vault, sorted into folders by category."
         ),
         input_schema={
             "type": "object",
@@ -60,7 +64,7 @@ def register_notes_tools(registry):
                 "content": {"type": "string", "description": "The note content to save."},
                 "category": {
                     "type": "string",
-                    "enum": ["general", "ifa", "business", "personal", "reminder"],
+                    "enum": ["general", "ifa", "business", "personal", "reminder", "streaming"],
                     "description": "Category for the note. Default: 'general'.",
                 },
             },
@@ -81,7 +85,7 @@ def register_notes_tools(registry):
             "properties": {
                 "category": {
                     "type": "string",
-                    "enum": ["general", "ifa", "business", "personal", "reminder"],
+                    "enum": ["general", "ifa", "business", "personal", "reminder", "streaming"],
                     "description": "Filter by category. Omit to get all notes.",
                 },
                 "limit": {
