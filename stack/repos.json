@@ -1,0 +1,14 @@
+{
+  "_about": "Open-source tools in Jarvis's stack. scripts/install_stack.sh clones them; scripts/study_stack.py writes a knowledge note for each into the Obsidian vault. Each app's own README has its run/deploy steps.",
+  "repos": [
+    {"name": "Open Generative AI", "repo": "Anil-matcha/Open-Generative-AI", "use": "Open-source AI image & video generation studio", "kind": "web app"},
+    {"name": "VoiceStudio", "repo": "debpalash/VoiceStudio", "use": "Fully-local ElevenLabs alternative: voice cloning, dubbing, transcription — candidate local TTS for Jarvis", "kind": "local app"},
+    {"name": "OpenSEO", "repo": "duckduckdeploy/openseo", "use": "Open-source Ahrefs/SEMrush alternative (best match for the link — confirm)", "kind": "web app"},
+    {"name": "AppFlowy", "repo": "AppFlowy-IO/AppFlowy", "use": "AI workspace: projects, wikis, docs (Notion alternative)", "kind": "desktop app"},
+    {"name": "OpenWhispr", "repo": "OpenWhispr/openwhispr", "use": "Local voice-to-text dictation (Whisper/Parakeet) — candidate local STT for Jarvis", "kind": "desktop app"},
+    {"name": "OpenProject", "repo": "opf/openproject", "use": "Project management (Gantt, boards, time tracking)", "kind": "server (Docker)"},
+    {"name": "Chatwoot", "repo": "chatwoot/chatwoot", "use": "Omni-channel customer support / live chat inbox", "kind": "server (Docker)"},
+    {"name": "Cap", "repo": "CapSoftware/Cap", "use": "Screen recording, Loom alternative", "kind": "desktop app"},
+    {"name": "SEO Skills", "repo": "Illyism/seo-skills", "use": "30 SEO/GEO/marketing SKILL.md workflows — installed into .claude/skills", "kind": "skills"}
+  ]
+}

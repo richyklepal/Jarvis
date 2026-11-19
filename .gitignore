@@ -10,3 +10,4 @@ dist/
 build/
 data/memory/
 data/notes.json
+data/vault/

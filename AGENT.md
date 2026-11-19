@@ -53,8 +53,10 @@ Never hedges for the sake of sounding safe. Cut everything that doesn't earn its
 |----------|--------------------------|--------------------------------------------------------|
 | Language | Python                   | Mainstream, good audio + HTTP support, readable        |
 | Brain    | Claude claude-sonnet-4-6 | Anthropic SDK, behind a thin seam in `brain.py`        |
-| STT      | Deepgram                 | Tier 3 — fast, streaming-capable                       |
-| TTS      | ElevenLabs               | Tier 3 — streaming, natural voice                      |
+| STT      | VoiceStudio / Whisper / Deepgram | `STT_PROVIDER` — local first, Deepgram fallback |
+| TTS      | VoiceStudio / ElevenLabs | `TTS_PROVIDER` — local first, ElevenLabs fallback      |
+| Images   | stable-diffusion.cpp (local) → MuAPI | Local first: free, Metal on Apple Silicon (`scripts/setup_local_images.sh`); MuAPI for premium models/edits |
+| Video    | MuAPI (Open-Generative-AI engine) | Replaces Higgsfield; paid, confirmation-gated |
 | Runtime  | Laptop-first             | Heartbeat (Tier 5) designed to relocate without rewrite|
 
 ---
@@ -103,3 +105,26 @@ Yes — Jarvis surfaces things without being asked. Rules:
 | 4    | Memory across restarts                                      | Fact told in session 1 is known in session 2            |
 | 5    | Heartbeat (proactive loop)                                  | Scheduled check surfaces without being asked            |
 | 6    | Rails (gate, config file, audit log, kill switch)           | "Never without asking" list has teeth                   |
+
+---
+
+## Obsidian Logging & Learning
+
+Everything is logged to the Obsidian vault set by `OBSIDIAN_VAULT_PATH` (fallback: `data/vault/`):
+
+| Vault path                         | What                                                        |
+|------------------------------------|-------------------------------------------------------------|
+| `Jarvis/Sessions/YYYY-MM-DD.md`    | Every Jarvis turn — typed or spoken input, tool calls, replies |
+| `Jarvis/Claude/YYYY-MM-DD.md`      | Every Claude Code session in this repo (hook in `.claude/settings.json`) |
+| `Jarvis/Notes/<category>.md`       | Notes from `save_note`                                      |
+| `Jarvis/Memory.md`                 | Long-term facts (`remember_fact`), loaded into every session |
+| `Jarvis/Knowledge/GitHub/*.md`     | Repos studied with `github_study_repo`                      |
+
+Jarvis reads the vault back with `vault_search` / `vault_read`. Private repos need `GITHUB_TOKEN`.
+
+---
+
+## Skills & Stack
+
+- **Skills** — `.claude/skills/` holds 30 SEO/GEO/marketing/copy playbooks from `Illyism/seo-skills` (see `.claude/skills/SOURCES.md`). Claude Code uses them directly; Jarvis uses them via `list_skills` / `load_skill`. Refresh: `scripts/install_skills.sh`.
+- **Stack** — `stack/repos.json` lists the open-source tools in Jarvis's orbit (Open Generative AI, VoiceStudio, OpenSEO, AppFlowy, OpenWhispr, OpenProject, Chatwoot, Cap). `scripts/install_stack.sh` clones them to `~/jarvis-stack`; `scripts/study_stack.py` writes a knowledge note for each into Obsidian.

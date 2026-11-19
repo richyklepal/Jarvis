@@ -31,9 +31,8 @@ def save_note(content, category="general"):
     }
     notes.append(note)
     _save(notes)
-    path = obsidian.write_note(content, category)
-    where = f" (in Obsidian: {path.parent.name}/{path.name})" if path else ""
-    return f"Saved [{category}]: {content}{where}"
+    obsidian.write_note_entry(category, content)
+    return f"Saved [{category}]: {content}"
 
 
 def get_notes(category=None, limit=10):

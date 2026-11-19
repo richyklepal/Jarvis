@@ -11,6 +11,10 @@ from tool_registry import ToolRegistry
 from tools.ifa import register_ifa_tools
 from tools.notes import register_notes_tools
 from tools.obsidian import register_obsidian_tools
+from tools.github_learn import register_github_tools
+from tools.skills import register_skill_tools
+from tools.media import register_media_tools
+from tools import obsidian
 
 
 def build_registry():
@@ -18,6 +22,9 @@ def build_registry():
     register_ifa_tools(registry)
     register_notes_tools(registry)
     register_obsidian_tools(registry)
+    register_github_tools(registry)
+    register_skill_tools(registry)
+    register_media_tools(registry)
     return registry
 
 
@@ -53,8 +60,9 @@ def run_voice(system, registry):
     from audio.stt import transcribe
     from audio import tts
 
+    from audio import stt
     history = []
-    print(f"\nJarvis voice mode. {len(registry)} tools ready.")
+    print(f"\nJarvis voice mode. {len(registry)} tools ready. STT: {stt.provider()} · TTS: {tts.provider()}")
     print("Hold F5 to speak — release when done. Say 'exit' to stop.")
     print("Transcript prints next to your reply so you can see what Jarvis heard.\n")
     print("Mac note: if F5 doesn't respond, go to System Settings → Privacy & Security")
@@ -110,7 +118,11 @@ def run():
     args = parser.parse_args()
 
     registry = build_registry()
-    system = build_system_prompt()
+    facts = obsidian.load_memory_facts()
+    system = build_system_prompt(facts)
+    print(obsidian.status_line())
+    print(f"[Memory] {len(facts)} facts loaded from Jarvis/Memory.md")
+    obsidian.log_session_start("voice" if args.voice else "text")
 
     if args.voice:
         run_voice(system, registry)
