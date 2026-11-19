@@ -3,11 +3,17 @@ Text-to-speech with swappable providers. Pick one with TTS_PROVIDER in .env:
 
   voicestudio  local VoiceStudio server (OpenAI-compatible /v1/audio/speech, streamed PCM)
   elevenlabs   ElevenLabs cloud (needs ELEVENLABS_API_KEY) — the original provider
+  mac          free built-in Mac voice via `say` — default "Daniel", the British male voice
 
-Default: elevenlabs (unchanged behaviour). Playback is interruptible via stop().
+Default: elevenlabs if ELEVENLABS_API_KEY is set, otherwise mac on a Mac.
+Playback is interruptible via stop().
 """
 import json
 import os
+import re
+import shutil
+import subprocess
+import sys
 import threading
 import urllib.request
 
@@ -23,8 +29,62 @@ _stop_event = threading.Event()
 _playback_thread = None
 
 
+_say_proc = None
+_mac_voice = None
+MAC_VOICE_FALLBACKS = ["Daniel (Enhanced)", "Daniel (Premium)", "Daniel", "Oliver", "Arthur"]
+
+
 def provider():
-    return os.environ.get("TTS_PROVIDER", "elevenlabs").strip().lower()
+    name = os.environ.get("TTS_PROVIDER", "").strip().lower()
+    if name:
+        return name
+    if os.environ.get("ELEVENLABS_API_KEY", "").strip() not in ("", "your_key_here"):
+        return "elevenlabs"
+    return "mac" if sys.platform == "darwin" else "elevenlabs"
+
+
+def clean_for_speech(text):
+    """Strip Markdown so the voice doesn't read out asterisks, pound signs and links."""
+    text = re.sub(r"```.*?```", " ", text, flags=re.S)
+    text = re.sub(r"\[([^\]]+)\]\([^)]+\)", r"\1", text)
+    text = re.sub(r"https?://\S+", "a link", text)
+    text = re.sub(r"^\s{0,3}#{1,6}\s*", "", text, flags=re.M)
+    text = re.sub(r"^\s*[-*•]\s+", "", text, flags=re.M)
+    text = re.sub(r"[*_`|>#]+", "", text)
+    return re.sub(r"\s+", " ", text).strip()
+
+
+# ---------------------------------------------------------------- mac (free)
+
+def _pick_mac_voice():
+    global _mac_voice
+    if _mac_voice is None:
+        try:
+            out = subprocess.run(["say", "-v", "?"], capture_output=True, text=True, timeout=10).stdout
+        except (OSError, subprocess.SubprocessError):
+            out = ""
+        installed = {m.group(1).strip() for m in re.finditer(r"^(.+?)\s{2,}[a-z]{2}[_-][A-Za-z]{2}", out, re.M)}
+        wanted = os.environ.get("MAC_VOICE", "").strip()
+        _mac_voice = next((v for v in ([wanted] if wanted else []) + MAC_VOICE_FALLBACKS if v in installed), "")
+        if wanted and _mac_voice != wanted:
+            print(f"[Voice] '{wanted}' isn't installed; using '{_mac_voice or 'system default'}'. Add voices in "
+                  "System Settings → Accessibility → Spoken Content → System Voice → Manage Voices.")
+    return _mac_voice
+
+
+def _speak_mac(text):
+    global _say_proc
+    if sys.platform != "darwin" or not shutil.which("say"):
+        raise RuntimeError("TTS_PROVIDER=mac only works on a Mac.")
+    cmd = ["say", "-r", os.environ.get("MAC_VOICE_RATE", "180")]
+    voice = _pick_mac_voice()
+    if voice:
+        cmd += ["-v", voice]
+    _say_proc = subprocess.Popen(cmd + [text])
+    while _say_proc.poll() is None:
+        if _stop_event.wait(0.05):
+            _say_proc.terminate()
+            break
 
 
 def _play_chunks(chunks, rate):
@@ -94,8 +154,13 @@ def _voicestudio_chunks(text):
 def speak(text):
     """Synthesize text and play it. Interruptible — call stop() to cut it short."""
     _stop_event.clear()
+    text = clean_for_speech(text)
+    if not text:
+        return
     try:
-        if provider() == "voicestudio":
+        if provider() == "mac":
+            _speak_mac(text)
+        elif provider() == "voicestudio":
             _play_chunks(_voicestudio_chunks(text), VOICESTUDIO_RATE)
         else:
             _play_chunks(_elevenlabs_chunks(text), ELEVENLABS_RATE)
@@ -114,5 +179,16 @@ def speak_async(text):
 def stop():
     """Stop current playback immediately."""
     _stop_event.set()
+    if _say_proc and _say_proc.poll() is None:
+        _say_proc.terminate()
     if _playback_thread and _playback_thread.is_alive():
         _playback_thread.join(timeout=1.0)
+
+
+if __name__ == "__main__":
+    from dotenv import load_dotenv
+
+    load_dotenv()
+    line = " ".join(sys.argv[1:]) or "Good evening. All systems are online, and I am at your service."
+    print(f"[{provider()} voice{': ' + _pick_mac_voice() if provider() == 'mac' else ''}] {line}")
+    speak(line)

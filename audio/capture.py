@@ -1,3 +1,5 @@
+import os
+import sys
 import time
 import threading
 import numpy as np
@@ -6,13 +8,23 @@ from pynput import keyboard as kb
 
 SAMPLE_RATE = 16000
 CHANNELS = 1
-PTT_KEY = kb.Key.f5
+
+
+def _ptt_key():
+    """Push-to-talk key. PTT_KEY in .env, e.g. f5, alt_r (right Option), ctrl_r, cmd_r."""
+    name = os.environ.get("PTT_KEY", "").strip().lower() or ("alt_r" if sys.platform == "darwin" else "f5")
+    return getattr(kb.Key, name, kb.Key.f5), name
+
+
+PTT_KEY, PTT_KEY_NAME = _ptt_key()
+KEY_LABELS = {"alt_r": "right Option", "alt_l": "left Option", "ctrl_r": "right Control", "cmd_r": "right Command"}
+PTT_LABEL = KEY_LABELS.get(PTT_KEY_NAME, PTT_KEY_NAME.upper())
 
 
 def record_ptt(on_press_callback=None):
     """
-    Wait for F5 press, record while held, return raw PCM int16 bytes on release.
-    Calls on_press_callback() the instant F5 is pressed — use this to stop TTS.
+    Wait for the push-to-talk key, record while held, return raw PCM int16 bytes on release.
+    Calls on_press_callback() the instant the key is pressed — use this to stop TTS.
     Returns None if no audio was captured.
     """
     frames = []
@@ -29,12 +41,12 @@ def record_ptt(on_press_callback=None):
             state["pressing"] = False
             state["done"] = True
 
-    print("\n[Hold F5 to speak]", flush=True)
+    print(f"\n[Hold {PTT_LABEL} to speak]", flush=True)
 
     listener = kb.Listener(on_press=on_press, on_release=on_release)
     listener.start()
 
-    # Wait for F5 to go down
+    # Wait for the key to go down
     while not state["pressing"] and not state["done"]:
         time.sleep(0.01)
 

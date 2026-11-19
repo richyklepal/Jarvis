@@ -63,9 +63,10 @@ def run_voice(system, registry):
     from audio import stt
     history = []
     print(f"\nJarvis voice mode. {len(registry)} tools ready. STT: {stt.provider()} · TTS: {tts.provider()}")
-    print("Hold F5 to speak — release when done. Say 'exit' to stop.")
+    from audio.capture import PTT_LABEL
+    print(f"Hold {PTT_LABEL} to speak — release when done. Say 'exit' to stop.")
     print("Transcript prints next to your reply so you can see what Jarvis heard.\n")
-    print("Mac note: if F5 doesn't respond, go to System Settings → Privacy & Security")
+    print("Mac note: if the talk key doesn't respond, go to System Settings → Privacy & Security")
     print("→ Accessibility and grant Terminal access.\n")
 
     while True:

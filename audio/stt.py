@@ -5,7 +5,7 @@ Speech-to-text with swappable providers. Pick one with STT_PROVIDER in .env:
   whisper      local faster-whisper, in-process (pip install faster-whisper)
   deepgram     Deepgram cloud (needs DEEPGRAM_API_KEY) — the original provider
 
-Default: deepgram (unchanged behaviour). Every provider takes raw PCM int16 @16 kHz
+Default: deepgram if DEEPGRAM_API_KEY is set, otherwise local whisper (free). Every provider takes raw PCM int16 @16 kHz
 mono bytes from audio/capture.py and returns the transcript string.
 """
 import io
@@ -105,7 +105,11 @@ _PROVIDERS = {"deepgram": _deepgram, "voicestudio": _voicestudio, "whisper": _wh
 
 
 def provider():
-    return os.environ.get("STT_PROVIDER", "deepgram").strip().lower()
+    name = os.environ.get("STT_PROVIDER", "").strip().lower()
+    if name:
+        return name
+    key = os.environ.get("DEEPGRAM_API_KEY", "").strip()
+    return "deepgram" if key and key != "your_key_here" else "whisper"
 
 
 def transcribe(pcm_bytes):
