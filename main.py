@@ -108,6 +108,28 @@ def run_voice(system, registry):
         print()
 
 
+def run_interfaces(web, telegram):
+    """Run the web page and/or Telegram bot on one shared Jarvis."""
+    import threading
+    from jarvis_core import Jarvis
+
+    jarvis = Jarvis("web+telegram" if web and telegram else ("web" if web else "telegram"))
+    print(obsidian.status_line())
+    print(f"[Memory] {len(jarvis.facts)} facts loaded · {len(jarvis.registry)} tools ready")
+    if web and telegram:
+        from interfaces import telegram_bot
+        threading.Thread(target=telegram_bot.run, args=(jarvis,), daemon=True).start()
+    try:
+        if web:
+            from interfaces import web as web_ui
+            web_ui.serve(jarvis)
+        else:
+            from interfaces import telegram_bot
+            telegram_bot.run(jarvis)
+    except KeyboardInterrupt:
+        print("\nJarvis: Signing off.")
+
+
 def run():
     if not os.environ.get("ANTHROPIC_API_KEY"):
         print("\n[Setup] ANTHROPIC_API_KEY is not set.")
@@ -116,7 +138,13 @@ def run():
 
     parser = argparse.ArgumentParser(description="Jarvis AI Assistant")
     parser.add_argument("--voice", action="store_true", help="Push-to-talk voice mode")
+    parser.add_argument("--web", action="store_true", help="Chat page in your browser (http://localhost:8765)")
+    parser.add_argument("--telegram", action="store_true", help="Answer you on Telegram")
     args = parser.parse_args()
+
+    if args.web or args.telegram:
+        run_interfaces(args.web, args.telegram)
+        return
 
     registry = build_registry()
     facts = obsidian.load_memory_facts()

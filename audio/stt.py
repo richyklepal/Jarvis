@@ -84,9 +84,8 @@ def _voicestudio(pcm_bytes):
         raise RuntimeError(f"VoiceStudio not reachable at {voicestudio_url()} — is it running? ({e})")
 
 
-def _whisper(pcm_bytes):
+def _get_whisper():
     global _whisper_model
-    import numpy as np
     try:
         from faster_whisper import WhisperModel
     except ImportError:
@@ -95,10 +94,23 @@ def _whisper(pcm_bytes):
         size = os.environ.get("WHISPER_MODEL", "base.en")
         device = os.environ.get("WHISPER_DEVICE", "auto")
         _whisper_model = WhisperModel(size, device=device, compute_type="int8" if device != "cuda" else "float16")
+    return _whisper_model
+
+
+def _whisper(pcm_bytes):
+    import numpy as np
+
     audio = np.frombuffer(pcm_bytes, dtype=np.int16).astype(np.float32) / 32768.0
     lang = os.environ.get("STT_LANGUAGE", "").strip() or None
-    segments, _ = _whisper_model.transcribe(audio, language=lang, vad_filter=True)
+    segments, _ = _get_whisper().transcribe(audio, language=lang, vad_filter=True)
     return " ".join(s.text for s in segments)
+
+
+def transcribe_file(path):
+    """Transcribe an audio file (e.g. a Telegram voice note, .ogg) with local Whisper."""
+    lang = os.environ.get("STT_LANGUAGE", "").strip() or None
+    segments, _ = _get_whisper().transcribe(str(path), language=lang, vad_filter=True)
+    return " ".join(s.text for s in segments).strip()
 
 
 _PROVIDERS = {"deepgram": _deepgram, "voicestudio": _voicestudio, "whisper": _whisper}
