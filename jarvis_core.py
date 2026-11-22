@@ -13,12 +13,12 @@ from tools import obsidian
 MAX_HISTORY = 40  # messages kept per conversation; older ones drop off
 
 
-def _trim(history):
-    """Keep the last MAX_HISTORY messages, starting on a plain user message so
+def _trim(history, keep=MAX_HISTORY):
+    """Keep the last `keep` messages, starting on a plain user message so
     tool calls and their results are never split apart."""
-    if len(history) <= MAX_HISTORY:
+    if len(history) <= keep:
         return history
-    cut = len(history) - MAX_HISTORY
+    cut = len(history) - keep
     while cut < len(history):
         m = history[cut]
         if m["role"] == "user" and isinstance(m["content"], str):
@@ -43,15 +43,16 @@ class Jarvis:
         with self._guard:
             return self._locks.setdefault(conv_id, threading.Lock())
 
-    def ask(self, conv_id, text):
-        """Send one message in a conversation and return Jarvis's reply."""
+    def ask(self, conv_id, text, keep=MAX_HISTORY):
+        """Send one message in a conversation and return Jarvis's reply.
+        keep = how many messages of history to carry (interviews keep more)."""
         text = (text or "").strip()
         if not text:
             return ""
         with self._lock_for(conv_id):
             history = self._histories.get(conv_id, []) + [{"role": "user", "content": text}]
             history, reply = agent.run_turn(history, self.system, self.registry)
-            self._histories[conv_id] = _trim(history)
+            self._histories[conv_id] = _trim(history, keep)
             return reply or "(No reply — check the terminal for errors.)"
 
     def reset(self, conv_id):

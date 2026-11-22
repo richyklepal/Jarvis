@@ -7,12 +7,17 @@ Setup, once:
      TELEGRAM_ALLOWED_USER_ID and restart. From then on it only answers you.
 
 Send text or voice notes. Voice notes are transcribed on your computer with Whisper.
-Commands: /new starts a fresh conversation, /id shows your user ID.
+Commands:
+  /interview  Jarvis interviews you one question at a time (answer by voice note on a walk).
+              Everything is saved word for word in Obsidian under Jarvis/Interviews.
+  /build      End the interview and turn it into your second-brain notes.
+  /new        Fresh conversation.   /id  Shows your user ID.
 """
 
 import json
 import os
 import tempfile
+import threading
 import time
 import urllib.error
 import urllib.parse
@@ -73,6 +78,23 @@ def run(jarvis):
     print(f"[Telegram] @{me['username']} is listening.", "Locked to your account." if allowed else
           "Not locked yet — message the bot to get your user ID.")
 
+    interviews = {}  # chat_id -> interview transcript path
+
+    def finish_interview(chat_id):
+        from tools.brain_builder import build_brain
+
+        path = interviews.pop(chat_id, None)
+        jarvis.reset(f"tg:{chat_id}:interview")
+        bot.send(chat_id, "Interview saved. Building your second brain now. This takes a few minutes; "
+                          "I'll message you when it's done.")
+
+        def work():
+            try:
+                bot.send(chat_id, build_brain(path))
+            except Exception as e:
+                bot.send(chat_id, f"Building the notes failed: {e}. The transcript is safe; send /build to retry.")
+        threading.Thread(target=work, daemon=True).start()
+
     offset = None
     while True:
         try:
@@ -110,6 +132,31 @@ def run(jarvis):
                         bot.send(chat_id, "I couldn't make out that voice note. Try again?")
                         continue
                     bot.send(chat_id, f"🎙 {text}")
+                if text.startswith("/interview"):
+                    from tools.brain_builder import start_interview, append_turn, INTERVIEW_KICKOFF
+
+                    path = start_interview("telegram")
+                    interviews[chat_id] = path
+                    jarvis.reset(f"tg:{chat_id}:interview")
+                    bot.call("sendChatAction", chat_id=chat_id, action="typing")
+                    question = jarvis.ask(f"tg:{chat_id}:interview", INTERVIEW_KICKOFF, keep=400)
+                    append_turn(path, "Jarvis", question)
+                    bot.send(chat_id, "Interview started. Answer with voice notes; send /build when you're done.\n\n"
+                             + question)
+                    continue
+                if text.startswith("/build") or (chat_id in interviews and text.lower().strip(" .!") == "done"):
+                    finish_interview(chat_id)
+                    continue
+                if chat_id in interviews:
+                    from tools.brain_builder import append_turn
+
+                    path = interviews[chat_id]
+                    append_turn(path, "You", text)
+                    bot.call("sendChatAction", chat_id=chat_id, action="typing")
+                    question = jarvis.ask(f"tg:{chat_id}:interview", text, keep=400)
+                    append_turn(path, "Jarvis", question)
+                    bot.send(chat_id, question)
+                    continue
                 if text.startswith("/new"):
                     jarvis.reset(f"tg:{chat_id}")
                     bot.send(chat_id, "Fresh conversation.")

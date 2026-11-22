@@ -15,6 +15,7 @@ from tools.github_learn import register_github_tools
 from tools.skills import register_skill_tools
 from tools.media import register_media_tools
 from tools import obsidian
+from tools.brain_builder import register_brain_tools
 
 
 def build_registry():
@@ -25,6 +26,7 @@ def build_registry():
     register_github_tools(registry)
     register_skill_tools(registry)
     register_media_tools(registry)
+    register_brain_tools(registry)
     return registry
 
 
